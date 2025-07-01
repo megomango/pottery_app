@@ -1,4 +1,4 @@
-# Pottery App 🏺
+# Pottery App 
 
 An elegant and simple Flutter mobile application designed to showcase, browse, and interact with traditional handmade pottery products from our local village.
 
