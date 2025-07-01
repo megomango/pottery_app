@@ -17,16 +17,3 @@ An elegant and simple Flutter mobile application designed to showcase, browse, a
 - `shared_preferences` for local data saving
 - `url_launcher` to open WhatsApp
 
-## 📷 Screenshots
-
-_You can add screenshots here later_
-
-## 🛠 Getting Started
-
-To run this project locally:
-
-```bash
-git clone https://github.com/megomango/pottery_app.git
-cd pottery_app
-flutter pub get
-flutter run
