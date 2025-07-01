@@ -1,0 +1,15 @@
+import '../product_model/product_model.dart';
+
+List<Product> potteryProducts = [
+  Product(name: "طقم قلاية 3 قطع", price: 120.0, image: 'assets/images/1.jpg'),
+  Product(name: "طاجن صغير ", price: 8.0, image: 'assets/images/2.jpg'),
+  Product(name: "فاظة", price: 200.0, image: 'assets/images/3.jpg'),
+  Product(name: "مرقض حمام ", price: 20.0, image: 'assets/images/4.jpg'),
+  Product(name: "طقم حلل ريفي 6 قطع  ", price: 100.0, image: 'assets/images/5.jpg'),
+  Product(name: "طقم صنية 3 قطع ", price: 60.0, image: 'assets/images/6.jpg'),
+  Product(name: "طقم برام 3 قطع ", price: 60.0, image: 'assets/images/7.jpg'),
+  Product(name: "طقم حلة كركوتة 6 قطع ", price: 70.0, image: 'assets/images/8.jpg'),
+  Product(name: "مج سادة ", price: 10.0, image: 'assets/images/9.jpg'),
+  Product(name: "طقم شاي ", price: 200.0, image: 'assets/images/10.jpg'),
+  Product(name: " كنكة و 2 مج ", price: 100.0, image: 'assets/images/11.jpg'),
+];
