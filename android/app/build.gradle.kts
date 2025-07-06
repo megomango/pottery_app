@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.pottery"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "26.3.11579264" // أو أي إصدار متثبت فعلاً
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

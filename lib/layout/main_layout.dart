@@ -79,7 +79,12 @@ class _MainLayoutState extends State<MainLayout> {
     ];
 
     return Scaffold(
-      body: pages[currentIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) =>
+            FadeTransition(opacity: animation, child: child),
+        child: pages[currentIndex],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: widget.onToggleTheme,
         backgroundColor: Theme.of(context).brightness == Brightness.dark

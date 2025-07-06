@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pottery/moduels/cart_screen/cart_screen.dart';
 import 'package:pottery/moduels/product_details/product_details.dart';
 
@@ -32,68 +33,76 @@ class HomeScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final product = potteryProducts[index];
           final isInFavorite = favorite.contains(product);
-          cart.contains(product);
 
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 3,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Row(
-                children: [
-                  // 🏺 الصورة
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProductDetails(
-                              product: product,
-                              isInCart: cart.contains(product),
-                              isInFavorite: favorite.contains(product),
-                              onCartUpdate: onCartUpdate,
-                              onFavoriteUpdate: onFavoriteUpdate,
+          return AnimationConfiguration.staggeredList(
+            position: index,
+            duration: const Duration(milliseconds: 500),
+            child: SlideAnimation(
+              verticalOffset: 50.0,
+              child: FadeInAnimation(
+                child: Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: [
+                        // 🏺 الصورة
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProductDetails(
+                                    product: product,
+                                    isInCart: cart.contains(product),
+                                    isInFavorite: favorite.contains(product),
+                                    onCartUpdate: onCartUpdate,
+                                    onFavoriteUpdate: onFavoriteUpdate,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Hero( // ✅ Hero Animation
+                              tag: product.id, // تأكد أن لكل منتج ID فريد
+                              child: Image.asset(
+                                product.image,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        );
-                      },
-                      child: Image.asset(
-                        product.image,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
+                        ),
+                        const SizedBox(width: 16),
 
-                  // 📛 الاسم والسعر
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          product.name,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        // 📛 الاسم والسعر
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'السعر: ${product.price.toStringAsFixed(2)} جنيه',
+                                style: const TextStyle(color: Colors.grey),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'السعر: ${product.price.toStringAsFixed(2)} جنيه',
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
 
-                  // 🛒❤️ التحكم في السلة والمفضلة
+        // 🛒❤️ التحكم في السلة والمفضلة
                   Column(
                     children: [
                       Row(
@@ -159,6 +168,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+          ),
+          ),
             ),
           );
         },
